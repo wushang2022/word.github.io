@@ -49,12 +49,56 @@
             margin-top: 20px;
             font-size: 18px;
         }
+        datalist {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>JLT英语单词查询</h1>
-        <input type="text" id="wordInput" placeholder="输入英文单词">
+        <input type="text" id="wordInput" list="wordList" placeholder="输入英文单词或选择">
+        <datalist id="wordList">
+            <option value="foot">
+            <option value="leg">
+            <option value="heart">
+            <option value="brain">
+            <option value="head">
+            <option value="hand">
+            <option value="man">
+            <option value="mother">
+            <option value="father">
+            <option value="sun">
+            <option value="star">
+            <option value="ear">
+            <option value="act">
+            <option value="ball">
+            <option value="talk">
+            <option value="sit">
+            <option value="go">
+            <option value="fill">
+            <option value="spy">
+            <option value="bear">
+            <option value="rip">
+            <option value="round">
+            <option value="root">
+            <option value="spring">
+            <option value="fly">
+            <option value="be">
+            <option value="old">
+            <option value="tug">
+            <option value="net">
+            <option value="数字">
+            <option value="jar">
+            <option value="right">
+            <option value="F">
+            <option value="sign">
+            <option value="T">
+            <option value="U">
+            <option value="L">
+            <option value="art">
+            <option value="big">
+        </datalist>
         <br>
         <button onclick="searchWord()">查询</button>
         <div id="result"></div>
