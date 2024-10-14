@@ -140,8 +140,12 @@
         }
 
         function selectWord(word) {
-            document.getElementById('wordInput').value = word;
-            searchWord();
+            if (word === 'foot') {
+                window.location.href = 'foot.html';
+            } else {
+                document.getElementById('wordInput').value = word;
+                searchWord();
+            }
         }
     </script>
 </body>
