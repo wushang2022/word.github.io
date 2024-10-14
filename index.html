@@ -10,7 +10,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
         }
@@ -31,6 +31,7 @@
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            margin-bottom: 20px;
         }
         button {
             padding: 10px 20px;
@@ -49,71 +50,60 @@
             margin-top: 20px;
             font-size: 18px;
         }
-        datalist {
-            display: none;
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .word-item {
+            padding: 10px;
+            background-color: #e9e9e9;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .word-item:hover {
+            background-color: #d4d4d4;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>JLT英语单词查询</h1>
-        <input type="text" id="wordInput" list="wordList" placeholder="输入英文单词或选择">
-        <datalist id="wordList">
-            <option value="foot">
-            <option value="leg">
-            <option value="heart">
-            <option value="brain">
-            <option value="head">
-            <option value="hand">
-            <option value="man">
-            <option value="mother">
-            <option value="father">
-            <option value="sun">
-            <option value="star">
-            <option value="ear">
-            <option value="act">
-            <option value="ball">
-            <option value="talk">
-            <option value="sit">
-            <option value="go">
-            <option value="fill">
-            <option value="spy">
-            <option value="bear">
-            <option value="rip">
-            <option value="round">
-            <option value="root">
-            <option value="spring">
-            <option value="fly">
-            <option value="be">
-            <option value="old">
-            <option value="tug">
-            <option value="net">
-            <option value="数字">
-            <option value="jar">
-            <option value="right">
-            <option value="F">
-            <option value="sign">
-            <option value="T">
-            <option value="U">
-            <option value="L">
-            <option value="art">
-            <option value="big">
-        </datalist>
+        <input type="text" id="wordInput" placeholder="输入英文单词或选择">
         <br>
         <button onclick="searchWord()">查询</button>
         <div id="result"></div>
+        <div class="word-grid">
+            <div class="word-item" onclick="selectWord('foot')">foot</div>
+            <div class="word-item" onclick="selectWord('leg')">leg</div>
+            <div class="word-item" onclick="selectWord('heart')">heart</div>
+            <div class="word-item" onclick="selectWord('brain')">brain</div>
+            <div class="word-item" onclick="selectWord('head')">head</div>
+            <div class="word-item" onclick="selectWord('hand')">hand</div>
+            <div class="word-item" onclick="selectWord('man')">man</div>
+            <div class="word-item" onclick="selectWord('mother')">mother</div>
+            <div class="word-item" onclick="selectWord('father')">father</div>
+            <div class="word-item" onclick="selectWord('sun')">sun</div>
+            <div class="word-item" onclick="selectWord('star')">star</div>
+            <div class="word-item" onclick="selectWord('ear')">ear</div>
+            <div class="word-item" onclick="selectWord('act')">act</div>
+            <div class="word-item" onclick="selectWord('ball')">ball</div>
+            <div class="word-item" onclick="selectWord('talk')">talk</div>
+            <div class="word-item" onclick="selectWord('sit')">sit</div>
+        </div>
     </div>
 
     <script>
         function searchWord() {
             const word = document.getElementById('wordInput').value;
             const resultDiv = document.getElementById('result');
-            
-            // 这里可以添加实际的单词查询逻辑
-            // 现在只是一个简单的示例
             resultDiv.innerHTML = `您查询的单词是: ${word}`;
-            
-            // 如果有API或数据库，可以在这里发送请求获取单词释义
+        }
+
+        function selectWord(word) {
+            document.getElementById('wordInput').value = word;
+            searchWord();
         }
     </script>
 </body>
