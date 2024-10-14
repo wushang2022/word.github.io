@@ -37,6 +37,29 @@
         main {
             padding: 20px;
         }
+        .video-section {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .video-container {
+            margin-top: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -52,13 +75,90 @@
     <main>
         <h2>关于我们</h2>
         <p>这是一个致力于帮助人们学习英语的网站。我们提供各种资源和工具来提高您的英语水平。</p>
-        <h2>我们的服务</h2>
+        
+        <h2>每日英语学习提示</h2>
         <ul>
-            <li>在线英语课程</li>
-            <li>语法练习</li>
-            <li>词汇建设</li>
-            <li>口语练习</li>
+            <li>听力练习：每天听10分钟英语播客或新闻。</li>
+            <li>词汇建设：学习5个新单词并造句。</li>
+            <li>阅读技巧：尝试每天阅读一篇英文文章，并总结主要内容。</li>
+            <li>口语练习：使用新学的单词进行自我介绍或描述日常活动。</li>
         </ul>
+
+        <h2>实用英语短语</h2>
+        <table>
+            <tr>
+                <th>英语</th>
+                <th>中文</th>
+                <th>用法</th>
+            </tr>
+            <tr>
+                <td>Nice to meet you</td>
+                <td>很高兴认识你</td>
+                <td>初次见面时使用</td>
+            </tr>
+            <tr>
+                <td>How's it going?</td>
+                <td>最近怎么样？</td>
+                <td>非正式问候语</td>
+            </tr>
+            <tr>
+                <td>I couldn't agree more</td>
+                <td>我完全同意</td>
+                <td>表示强烈赞同</td>
+            </tr>
+        </table>
+
+        <div class="video-section">
+            <h2>推荐英语学习视频</h2>
+            <div id="videoList">
+                <!-- 视频将在这里显示 -->
+            </div>
+        </div>
     </main>
+
+    <script>
+        document.getElementById('videoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var videoUrl = document.getElementById('videoUrl').value;
+            var videoId = '';
+            
+            if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                videoId = videoUrl.split('v=')[1] || videoUrl.split('/').pop();
+                var iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+                document.getElementById('videoContainer').innerHTML += iframe;
+            } else if (videoUrl.includes('bilibili.com')) {
+                videoId = videoUrl.split('video/')[1].split('/')[0];
+                var iframe = '<iframe src="//player.bilibili.com/player.html?bvid=' + videoId + '" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="560" height="315"> </iframe>';
+                document.getElementById('videoContainer').innerHTML += iframe;
+            } else {
+                alert('请输入有效的YouTube或Bilibili视频链接');
+            }
+            
+            document.getElementById('videoUrl').value = '';
+        });
+
+        // 视频列表
+        const videos = [
+            { title: "基础英语会话", url: "https://www.youtube.com/embed/videoid1" },
+            { title: "商务英语技巧", url: "https://www.youtube.com/embed/videoid2" },
+            { title: "IELTS听力练习", url: "https://www.youtube.com/embed/videoid3" }
+        ];
+
+        // 显示视频
+        function displayVideos() {
+            const videoList = document.getElementById('videoList');
+            videos.forEach(video => {
+                const videoElement = document.createElement('div');
+                videoElement.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <iframe width="560" height="315" src="${video.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                `;
+                videoList.appendChild(videoElement);
+            });
+        }
+
+        // 页面加载时显示视频
+        window.onload = displayVideos;
+    </script>
 </body>
 </html>
