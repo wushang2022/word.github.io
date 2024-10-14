@@ -59,14 +59,15 @@
             color: #2C3E50;
         }
         .word-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
             gap: 10px;
             margin-top: 30px;
         }
         .word-item {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 8px 15px;
             background-color: #ECF0F1;
             border-radius: 20px;
