@@ -3,162 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎来到JLT英语学习 - GitHub Pages</title>
+    <title>JLT英语学习 - 单词查询</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
+            background-color: #f0f0f0;
         }
-        header {
-            background-color: #4CAF50;
-            color: white;
+        .container {
             text-align: center;
-            padding: 1rem;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        main {
-            padding: 20px;
-        }
-        .video-section {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .video-container {
-            margin-top: 20px;
-        }
-        form {
+        h1 {
+            color: #4CAF50;
             margin-bottom: 20px;
         }
         input[type="text"] {
-            width: 70%;
-            padding: 5px;
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
         button {
-            padding: 5px 10px;
+            padding: 10px 20px;
+            font-size: 16px;
             background-color: #4CAF50;
             color: white;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>欢迎来到JLT英语学习</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="https://wushang2022.github.io/word.github.io/">首页</a></li>
-            <li><a href="https://wushang2022.github.io/word.github.io/courses.html">英语课程</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h2>关于我们</h2>
-        <p>这是一个致力于帮助人们学习英语的网站。我们提供各种资源和工具来提高您的英语水平。</p>
-        
-        <h2>每日英语学习提示</h2>
-        <ul>
-            <li>听力练习：每天听10分钟英语播客或新闻。</li>
-            <li>词汇建设：学习5个新单词并造句。</li>
-            <li>阅读技巧：尝试每天阅读一篇英文文章，并总结主要内容。</li>
-            <li>口语练习：使用新学的单词进行自我介绍或描述日常活动。</li>
-        </ul>
-
-        <h2>实用英语短语</h2>
-        <table>
-            <tr>
-                <th>英语</th>
-                <th>中文</th>
-                <th>用法</th>
-            </tr>
-            <tr>
-                <td>Nice to meet you</td>
-                <td>很高兴认识你</td>
-                <td>初次见面时使用</td>
-            </tr>
-            <tr>
-                <td>How's it going?</td>
-                <td>最近怎么样？</td>
-                <td>非正式问候语</td>
-            </tr>
-            <tr>
-                <td>I couldn't agree more</td>
-                <td>我完全同意</td>
-                <td>表示强烈赞同</td>
-            </tr>
-        </table>
-
-        <div class="video-section">
-            <h2>推荐英语学习视频</h2>
-            <div id="videoList">
-                <!-- 视频将在这里显示 -->
-            </div>
-        </div>
-    </main>
+    <div class="container">
+        <h1>JLT英语单词查询</h1>
+        <input type="text" id="wordInput" placeholder="输入英文单词">
+        <br>
+        <button onclick="searchWord()">查询</button>
+        <div id="result"></div>
+    </div>
 
     <script>
-        document.getElementById('videoForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var videoUrl = document.getElementById('videoUrl').value;
-            var videoId = '';
+        function searchWord() {
+            const word = document.getElementById('wordInput').value;
+            const resultDiv = document.getElementById('result');
             
-            if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
-                videoId = videoUrl.split('v=')[1] || videoUrl.split('/').pop();
-                var iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-                document.getElementById('videoContainer').innerHTML += iframe;
-            } else if (videoUrl.includes('bilibili.com')) {
-                videoId = videoUrl.split('video/')[1].split('/')[0];
-                var iframe = '<iframe src="//player.bilibili.com/player.html?bvid=' + videoId + '" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="560" height="315"> </iframe>';
-                document.getElementById('videoContainer').innerHTML += iframe;
-            } else {
-                alert('请输入有效的YouTube或Bilibili视频链接');
-            }
+            // 这里可以添加实际的单词查询逻辑
+            // 现在只是一个简单的示例
+            resultDiv.innerHTML = `您查询的单词是: ${word}`;
             
-            document.getElementById('videoUrl').value = '';
-        });
-
-        // 视频列表
-        const videos = [
-            { title: "基础英语会话", url: "https://www.youtube.com/embed/videoid1" },
-            { title: "商务英语技巧", url: "https://www.youtube.com/embed/videoid2" },
-            { title: "IELTS听力练习", url: "https://www.youtube.com/embed/videoid3" }
-        ];
-
-        // 显示视频
-        function displayVideos() {
-            const videoList = document.getElementById('videoList');
-            videos.forEach(video => {
-                const videoElement = document.createElement('div');
-                videoElement.innerHTML = `
-                    <h3>${video.title}</h3>
-                    <iframe width="560" height="315" src="${video.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                `;
-                videoList.appendChild(videoElement);
-            });
+            // 如果有API或数据库，可以在这里发送请求获取单词释义
         }
-
-        // 页面加载时显示视频
-        window.onload = displayVideos;
     </script>
 </body>
 </html>
